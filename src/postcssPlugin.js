@@ -46,6 +46,7 @@ export default postcss.plugin("stylelint", (options = {}) => {
           // Handle either ES6 or CommonJS modules
           pluginImport = pluginImport.default || pluginImport
           ;[].concat(pluginImport).forEach(plugin => {
+            /* istanbul ignore if */
             if (!plugin.ruleName) {
               throw configurationError(
                 "stylelint v3+ requires plugins to expose a ruleName. " +
@@ -53,6 +54,7 @@ export default postcss.plugin("stylelint", (options = {}) => {
                 "with stylelint v3+. Please file an issue with the plugin."
               )
             }
+            /* istanbul ignore if */
             if (!_.includes(plugin.ruleName, "/")) {
               throw configurationError(
                 "stylelint v7+ requires plugin rules to be namspaced, " +
